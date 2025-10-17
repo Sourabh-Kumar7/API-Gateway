@@ -274,6 +274,49 @@ StyleCopReport.xml
 *.meta
 *.iobj
 *.ipdb
+################################################################################
+# Project-specific additions
+# These entries cover local build artifacts, editor temp files, macOS cruft,
+# runtime logs, local env files and temporary upload directories.
+################################################################################
+
+# CMake out-of-source build dir (ignore build/ to avoid committing artifacts)
+/build/
+
+# Executable produced by the build (no extension on mac/linux)
+# If you ever build the binary into the repo root, adjust as necessary.
+/build/API-Gateway
+
+# Static library already covered by *.a but be explicit for this project
+/build/libratelimiter.a
+
+# Drogon/Test runtime logs and test artifacts
+/logs/
+*.log
+
+# Uploads/temp folders (large binary or dynamic content should not be committed)
+/uploads/tmp/
+uploads/tmp/
+
+# Local environment files (may contain secrets)
+.env
+.env.local
+
+# macOS Finder metadata
+.DS_Store
+
+# Swap / backup files from editors
+*~
+*.swp
+*.swo
+
+# VSCode workspace (keep settings committed like tasks/launch if desired)
+.vscode/
+
+# Local build user prefs and IDE caches (already many are covered above)
+.idea/
+
+# Build artifacts and temp
 *.pgc
 *.pgd
 *.rsp

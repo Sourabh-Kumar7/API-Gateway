@@ -28,6 +28,17 @@ add_executable(${PROJECT_NAME} main.cc)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Drogon::Drogon)
 
+# Ratelimiter library
+add_library(ratelimiter STATIC
+    src/ratelimiter/TokenBucket.cpp
+    src/ratelimiter/RedisBucketSync.cpp
+    src/ratelimiter/RateLimiterManager.cpp
+)
+target_include_directories(ratelimiter PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_compile_features(ratelimiter PUBLIC cxx_std_17)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ratelimiter)
+
 
 # ==============================================================================
 # 4. Source File and Directory Setup
